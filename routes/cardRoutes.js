@@ -484,3 +484,35 @@ router.get("/onecard", (req, res) => {
 });
 
 module.exports = router;
+// Define the '/cards/drawthree' endpoint to draw 3 cards
+router.get("/drawthree", (req, res) => {
+  const shuffledCards = [...tarotCards].sort(() => 0.5 - Math.random());
+  const selectedCards = shuffledCards.slice(0, 3);
+  const response = {
+    past: selectedCards[0],
+    present: selectedCards[1],
+    future: selectedCards[2],
+  };
+  res.json(response);
+});
+
+// Define the '/cards/drawten' endpoint to draw 10 cards
+router.get("/drawten", (req, res) => {
+  const shuffledCards = [...tarotCards].sort(() => 0.5 - Math.random());
+  const selectedCards = shuffledCards.slice(0, 10);
+  const response = {
+    present: selectedCards[0],
+    past: selectedCards[1],
+    challenge: selectedCards[2],
+    future: selectedCards[3],
+    conscious: selectedCards[4],
+    unconscious: selectedCards[5],
+    yourInfluence: selectedCards[6],
+    externalInfluence: selectedCards[7],
+    hopesAndFears: selectedCards[8],
+    outcome: selectedCards[9],
+  };
+  res.json(response);
+});
+
+module.exports = router;
